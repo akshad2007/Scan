@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crop Doctor AI (Prototype)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section id="landingSection" class="card landing-card active-section">
+        <h1>Crop Doctor AI</h1>
+        <p>
+          Helping farmers quickly detect crop diseases using AI-powered analysis
+          for faster treatment decisions.
+        </p>
+        <button id="startBtn" class="btn btn-primary">Start Detection</button>
+      </section>
+
+      <section id="authSection" class="card hidden">
+        <div class="auth-header">
+          <h2 id="authTitle">Login</h2>
+          <p>Access your disease detection dashboard.</p>
+        </div>
+
+        <div class="toggle-group">
+          <button id="loginToggle" class="toggle-btn active">Login</button>
+          <button id="signupToggle" class="toggle-btn">Signup</button>
+        </div>
+
+        <form id="authForm" class="form-grid">
+          <label for="email">Email</label>
+          <input type="email" id="email" required placeholder="farmer@email.com" />
+
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            required
+            minlength="6"
+            placeholder="At least 6 characters"
+          />
+
+          <button type="submit" class="btn btn-primary" id="authSubmitBtn">
+            Login
+          </button>
+        </form>
+
+        <p id="authMessage" class="status-text"></p>
+      </section>
+
+      <section id="detectionSection" class="hidden">
+        <div class="grid-layout">
+          <article class="card">
+            <h2>Disease Detection</h2>
+            <p>Upload a crop leaf image and analyze for potential disease.</p>
+
+            <label class="upload-label" for="imageInput">Choose Crop Image</label>
+            <input type="file" id="imageInput" accept="image/*" />
+
+            <div class="preview-wrap">
+              <img id="imagePreview" alt="Crop preview" class="hidden" />
+              <p id="previewPlaceholder">No image selected yet.</p>
+            </div>
+
+            <button id="analyzeBtn" class="btn btn-primary" disabled>
+              Analyze Crop
+            </button>
+
+            <div id="loader" class="loader hidden" aria-live="polite"></div>
+
+            <div id="resultCard" class="result-card hidden">
+              <h3>Analysis Result</h3>
+              <p><strong>Disease:</strong> <span id="diseaseName"></span></p>
+              <p><strong>Confidence:</strong> <span id="confidenceText"></span></p>
+
+              <div class="progress-track">
+                <div id="confidenceBar" class="progress-fill"></div>
+              </div>
+
+              <p><strong>Suggestion:</strong> <span id="treatmentText"></span></p>
+            </div>
+          </article>
+
+          <article class="card">
+            <h2>Prediction History</h2>
+            <p>Recent analyses are saved locally for quick reference.</p>
+            <div id="historyList" class="history-list"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
